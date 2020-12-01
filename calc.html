@@ -38,9 +38,21 @@
             document.getElementById("console").innerHTML = sum;
         }
         function getAverage() {
-            let sum = addNumbers();
-            let avg = sum/numberList.length;
+            let sum, avg=0;
+            if(numberList) {
+                sum = numberList.reduce((x,y) => x + y, 0)
+                avg = sum/numberList.length;
+                console.log("avg: " + avg);
+            }
             document.getElementById("console").innerHTML = avg;
+        }
+        function getMin() {
+            let min=0;
+            if(numberList) {
+                min = numberList.reduce((x,y) => x<y?x:y);
+                console.log("min: " + min);
+            }
+            document.getElementById("console").innerHTML = min;
         }
     </script>
    
@@ -60,7 +72,7 @@
             <br/>
             <input type='button' value='Sum'  onclick="addNumbers()" />
             <input type='button' value='Average' onclick="getAverage()" />
-            <input type='button' value='Find Min'  />
+            <input type='button' value='Find Min' onclick="getMin()"  />
 
         </div>
 
