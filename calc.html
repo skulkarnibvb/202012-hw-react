@@ -20,7 +20,7 @@
         var numberList = [];
         function addToList() {
             let val = document.getElementById("number").value;
-            if(val) {
+            if(val && !isNaN(val)) {
                 numberList.push(parseInt(val));
                 let value = document.getElementById("numberList").innerHTML;
                 document.getElementById("numberList").innerHTML =  value + `<li>${val}</li>`
@@ -28,6 +28,7 @@
         }
         function clearDisplay() {
             document.getElementById("number").value = "";
+            document.getElementById("numberList").innerHTML = "";
         }
         function addNumbers() {
             let sum=0;
@@ -55,9 +56,18 @@
             document.getElementById("console").innerHTML = min;
         }
         function reset() {
+            numberList = [];
             document.getElementById("console").innerHTML = "";
             document.getElementById("numberList").innerHTML = "";
             clearDisplay();
+        }
+        function refreshNumbersList() {
+            document.getElementById("numberList").innerHTML =  "";
+            numberList.forEach(
+                numberUl => {
+                    document.getElementById("numberList").innerHTML +=  `<li>${numberUl}</li>`;
+                }
+            )
         }
     </script>
    
@@ -101,7 +111,7 @@
 
         </ul>
 
-        <input type='button' value='refresh list'  />
+        <input type='button' value='refresh list' onclick="refreshNumbersList()"  />
     </fieldset>
 
 
