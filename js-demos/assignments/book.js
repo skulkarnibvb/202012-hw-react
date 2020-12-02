@@ -47,7 +47,7 @@ class BookManager{
             return '';
         }
         
-        return this.books.filter(book => (book.title === text || book.author === text))
+        return this.books.filter(book => (book.title.includes(text) || book.author.includes(text)))
     }
 }
 
@@ -69,6 +69,7 @@ showBooks(manager.getAll(), "All Books");
 
 
 showBooks(manager.getBooksByAuthor("John Grisham"),"Books by John Grisham");
+showBooks(manager.getBooksByAuthor("Vivek Dutta Mishra"),"Books by Vivek Dutta Mishra");
 
 showBooks(manager.search('John'), 'John');
 
